@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const menus = [
   {
@@ -14,7 +15,7 @@ const menus = [
   {
     id: 'tofu',
     name: '두부조림',
-    image: process.env.PUBLIC_URL + '/images/tofu.png',
+    image: process.env.PUBLIC_URL + '/images/tofu.png', 
   },
   {
     id: 'salad',
@@ -24,24 +25,28 @@ const menus = [
 ];
 
 export default function HomePage() {
-  const handleSelect = (id: string) => {
-    console.log(`Selected menu: ${id}`);
+  const navigate = useNavigate();
+
+  const handleSelect = (menu: any) => {
+    navigate('/preview', { state: { menu } });
   };
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>나만의 밀키트</h1>
       <p>[한식] 메뉴를 선택하세요</p>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-        gap: '1rem',
-        marginTop: '1rem'
-      }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: '1rem',
+          marginTop: '1rem',
+        }}
+      >
         {menus.map((menu) => (
           <button
             key={menu.id}
-            onClick={() => handleSelect(menu.id)}
+            onClick={() => handleSelect(menu)}
             style={{
               border: '1px solid #ccc',
               borderRadius: '12px',
