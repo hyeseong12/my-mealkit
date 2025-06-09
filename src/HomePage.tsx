@@ -11,6 +11,16 @@ const menus = [
     name: '된장찌개',
     image: process.env.PUBLIC_URL + '/images/doenjang.png',
   },
+  {
+    id: 'tofu',
+    name: '두부조림',
+    image: process.env.PUBLIC_URL + '/images/tofu.png',
+  },
+  {
+    id: 'salad',
+    name: '샐러드',
+    image: process.env.PUBLIC_URL + '/images/salad.png',
+  },
 ];
 
 export default function HomePage() {
@@ -22,7 +32,12 @@ export default function HomePage() {
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>나만의 밀키트</h1>
       <p>[한식] 메뉴를 선택하세요</p>
-      <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+        gap: '1rem',
+        marginTop: '1rem'
+      }}>
         {menus.map((menu) => (
           <button
             key={menu.id}
@@ -31,7 +46,6 @@ export default function HomePage() {
               border: '1px solid #ccc',
               borderRadius: '12px',
               padding: '1rem',
-              width: '150px',
               cursor: 'pointer',
               background: '#f8f8f8',
             }}
@@ -41,7 +55,9 @@ export default function HomePage() {
               alt={menu.name}
               style={{ width: '100%', height: '100px', objectFit: 'cover', borderRadius: '8px' }}
             />
-            <div style={{ marginTop: '0.5rem', fontWeight: '500' }}>{menu.name}</div>
+            <div style={{ marginTop: '0.5rem', fontWeight: '500', fontSize: '0.95rem' }}>
+              {menu.name}
+            </div>
           </button>
         ))}
       </div>
